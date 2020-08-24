@@ -10,7 +10,10 @@
     Route::middleware('auth:api')->group(function(){
         // Todas as rotas abaixo estarão reféns da autenticação Bearer Token
         // PARA VERSÃO 1.0 - JarJarBinks
-        Route::namespace('JarJarBinks')->prefix('JarJarBinks')->name('JarJarBinks')->group(function(){
+        Route::prefix('JarJarBinks')->name('JarJarBinks')->group(function(){
+            Route::any('/teste',function(){
+                return response()->json(['teste' => true, 'valor' => 123],200);
+            });
             // Rota para Login
             // Rota para Agendamentos
             // Rota para Guias
