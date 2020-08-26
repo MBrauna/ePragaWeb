@@ -13,8 +13,9 @@ class Schudule extends Migration
             $table->text('description');
             $table->integer('id_subsidiary');
             $table->integer('id_responsible')->nullable(); // Quem irá atender, se nulo aparecerá para todos.
+            $table->dateTime('last_alt_at')->nullable();
             $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->dateTime('end_date')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
 

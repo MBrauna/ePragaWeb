@@ -4,20 +4,21 @@
 
     use App\Http\Controllers\Controller;
     use Illuminate\Http\Request;
-    use DB;
     use App\User;
+    use Carbon\Carbon;
+    use DB;
     use Hash;
-    use Validator;
     use Laravel\Passport\Passport;
+    use Validator;
 
     class TokenController extends Controller
     {
         public function getToken(Request $request) {
-            
             try {
                 $validator = Validator::make($request->all(), [
                     'cpf' => 'required|string|max:21',
                     'password' => 'required|string|min:6',
+                    'mobile_device' => 'required|string|min:4',
                 ]);
 
                 if($validator->fails()) {
@@ -34,10 +35,47 @@
                 $user = User::where('cpf_cnpj', $request->cpf)->first();
 
                 if($user) {
-                    if(Hash::check($request->password, $user->password)) {
+                    if(!$user->mobile_access) {
                         return response()->json([
-                            'teste' => Passport::personalAccessClientId($user->id),
-                        ],500);
+                            'error' =>  [
+                                'code'  =>  'ePraga0002',
+                                'message'   =>  'Usuário não tem permissão para acesso mobile! Verifique.'
+                            ],
+                        ],401);
+                    } // if($user->mobile_access) { ... }
+
+                    $user   =   User::find($user->id);
+
+                    if(Hash::check($request->password, $user->password)) {
+                        // Verifica se os dados de token existem ou estão expirados
+                        $dataToken  =   [];
+                        if(is_null($user->api_token) || Carbon::now()->gt(Carbon::parse($user->api_expiring))) {
+                            DB::beginTransaction();
+
+                            // Revoga todos os tokens para esse usuário
+                            DB::table('oauth_access_tokens')
+                            ->where('id', $id)
+                            ->update([
+                                'revoked' => true
+                            ]);
+
+                            // Gera um novo Token
+                            $dataToken  =   $user->createToken('ePragaApp');
+
+                            DB::table('users')
+                            ->where('id',$user->id)
+                            ->update([
+                                'mobile_device' =>  $request->mobile_device,
+                                'api_token'     =>  $dataToken->accessToken,
+                                'api_expiring'  =>  Carbon::parse($dataToken->expires_at),
+                                'last_login'    =>  Carbon::now(),
+                            ]);
+                            DB::commit();
+
+                            $user = User::where('cpf_cnpj', $request->cpf)->first();
+                        } // if(is_null($user->api_token) || Carbon::now()->gt(Carbon::parse($user->api_expiring))) { ... }
+
+                        return response()->json($user,200);
                     } // if(Hash::check($request->password, $user->password)) { ... }
                     else {
                         return response()->json([
@@ -65,8 +103,6 @@
                     ],
                 ],500);
             }
-
-            return response()->json($request->password,200);
 
         } // public function getToken(Request $request) { ... }
     } // class TokenController extends Controller { ... }
