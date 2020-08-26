@@ -36,6 +36,6 @@ class PeriodicSchuduleItem extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('schudule_item');
+        Schema::dropIfExists('periodic_schudule_item');
     }
 }
