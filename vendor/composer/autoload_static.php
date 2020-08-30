@@ -557,6 +557,13 @@ class ComposerStaticInit506e36d12b012e150015efd293898547
     );
 
     public static $prefixesPsr0 = array (
+        'R' => 
+        array (
+            'Rap2hpoutre\\LaravelLogViewer\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src',
+            ),
+        ),
         'M' => 
         array (
             'Mockery' => 
@@ -587,7 +594,13 @@ class ComposerStaticInit506e36d12b012e150015efd293898547
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+<<<<<<< HEAD
+        'App\\Http\\Controllers\\DashboardAdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardAdminController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
+=======
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+>>>>>>> 7c18f951174ad8f4612760c6cadb9284e49c7f6d
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -597,6 +610,7 @@ class ComposerStaticInit506e36d12b012e150015efd293898547
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\User\\User' => __DIR__ . '/../..' . '/app/Models/User/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -4338,6 +4352,12 @@ class ComposerStaticInit506e36d12b012e150015efd293898547
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'Rap2hpoutre\\LaravelLogViewer\\BaseController' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/controllers/LogViewerController.php',
+        'Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewer' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/Rap2hpoutre/LaravelLogViewer/LaravelLogViewer.php',
+        'Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewerServiceProvider' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/Rap2hpoutre/LaravelLogViewer/LaravelLogViewerServiceProvider.php',
+        'Rap2hpoutre\\LaravelLogViewer\\Level' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/Rap2hpoutre/LaravelLogViewer/Level.php',
+        'Rap2hpoutre\\LaravelLogViewer\\LogViewerController' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/controllers/LogViewerController.php',
+        'Rap2hpoutre\\LaravelLogViewer\\Pattern' => __DIR__ . '/..' . '/rap2hpoutre/laravel-log-viewer/src/Rap2hpoutre/LaravelLogViewer/Pattern.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',
