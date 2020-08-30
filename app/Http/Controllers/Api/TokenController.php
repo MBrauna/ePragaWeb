@@ -15,6 +15,16 @@
     {
         public function getToken(Request $request) {
             try {
+                // Coleta os dados da informação para salvá-los.
+                DB::beginTransaction();
+                DB::table('epraga_error')
+                ->insert([
+                    'id_user'       =>  1,
+                    'json_data'     =>  serialize($request->all()),
+                    'insert_date'   =>  Carbon::now(),
+                ]);
+                DB::commit();
+
                 $validator = Validator::make($request->all(), [
                     'cpf' => 'required|string|max:21',
                     'password' => 'required|string|min:6',
@@ -54,7 +64,7 @@
 
                             // Revoga todos os tokens para esse usuário
                             DB::table('oauth_access_tokens')
-                            ->where('id', $id)
+                            ->where('id', $user->id)
                             ->update([
                                 'revoked' => true
                             ]);
@@ -67,7 +77,7 @@
                             ->update([
                                 'mobile_device' =>  $request->mobile_device,
                                 'api_token'     =>  $dataToken->accessToken,
-                                'api_expiring'  =>  Carbon::parse($dataToken->expires_at),
+                                'api_expiring'  =>  Carbon::parse($dataToken->token->expires_at),
                                 'last_login'    =>  Carbon::now(),
                             ]);
                             DB::commit();

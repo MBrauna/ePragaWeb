@@ -22,13 +22,21 @@
                                     ->get();
 
                 foreach ($schuduleList as $key => $dataSchudule) {
+                    $subsidiary     =   DB::table('subsidiary')
+                                        ->where('id_subsidiary',$dataSchudule->id_subsidiary)
+                                        ->first()
+                                        ;
+
+                    $schuduleList[$key]->subsidiary =   $subsidiary;
+
                     $itemSchudule   =   DB::table('schudule_item')
                                         ->where('id_schudule',$dataSchudule->id_schudule)
                                         ->orderBy('sequence','asc')
                                         ->orderBy('description','asc')
                                         ->get();
 
-                    $schuduleList[$key]->item   =   $itemSchudule;
+                    $schuduleList[$key]->item       =   $itemSchudule;
+
                 } // foreach ($schuduleList as $key => $dataSchudule) { ... }
 
                 return response()->json($schuduleList,200);
