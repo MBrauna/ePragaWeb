@@ -16,8 +16,8 @@ class Subsidiary extends Migration
             $table->boolean('status')->default(false);
             // Localização da subsidiária
             $table->text('address')->default('Endereço não definido! Utilize o GPS.');
-            $table->double('latitude',11,8);
-            $table->double('longitude',11,8);
+            $table->double('latitude',11,8)->nullable();
+            $table->double('longitude',11,8)->nullable();
             $table->timestamps();
 
 

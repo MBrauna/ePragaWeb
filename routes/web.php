@@ -15,11 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'LoginController@index')->name('index');
 
-<<<<<<< HEAD
 Route::post('/login', 'LoginController@login')->name('login');
-=======
 Auth::routes(['register' => true]);
->>>>>>> 7c18f951174ad8f4612760c6cadb9284e49c7f6d
 
 Route::get('/dashboard', 'DashboardAdminController@index')->name('dashboard');
 

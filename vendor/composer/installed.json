@@ -520,22 +520,22 @@
     },
     {
         "name": "facade/flare-client-php",
-        "version": "1.3.4",
-        "version_normalized": "1.3.4.0",
+        "version": "1.3.5",
+        "version_normalized": "1.3.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/facade/flare-client-php.git",
-            "reference": "0eeb0de4fc1078433f0915010bd8f41e998adcb4"
+            "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/facade/flare-client-php/zipball/0eeb0de4fc1078433f0915010bd8f41e998adcb4",
-            "reference": "0eeb0de4fc1078433f0915010bd8f41e998adcb4",
+            "url": "https://api.github.com/repos/facade/flare-client-php/zipball/25907a113bfc212a38d458ae365bfb902b4e7fb8",
+            "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8",
             "shasum": ""
         },
         "require": {
             "facade/ignition-contracts": "~1.0",
-            "illuminate/pipeline": "^5.5|^6.0|^7.0",
+            "illuminate/pipeline": "^5.5|^6.0|^7.0|^8.0",
             "php": "^7.1",
             "symfony/http-foundation": "^3.3|^4.1|^5.0",
             "symfony/mime": "^3.4|^4.0|^5.1",
@@ -547,7 +547,7 @@
             "phpunit/phpunit": "^7.5.16",
             "spatie/phpunit-snapshot-assertions": "^2.0"
         },
-        "time": "2020-07-13T23:25:57+00:00",
+        "time": "2020-08-26T18:06:23+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -574,6 +574,12 @@
             "facade",
             "flare",
             "reporting"
+        ],
+        "funding": [
+            {
+                "url": "https://github.com/spatie",
+                "type": "github"
+            }
         ]
     },
     {
@@ -1398,17 +1404,17 @@
     },
     {
         "name": "laravel/framework",
-        "version": "v7.25.0",
-        "version_normalized": "7.25.0.0",
+        "version": "v7.26.1",
+        "version_normalized": "7.26.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "fdf3d4a40447eb286ba3820768306cae64bcc0b3"
+            "reference": "fad3e5f03b9ae89853c8a0925231d2b3ce07a9c3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/fdf3d4a40447eb286ba3820768306cae64bcc0b3",
-            "reference": "fdf3d4a40447eb286ba3820768306cae64bcc0b3",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/fad3e5f03b9ae89853c8a0925231d2b3ce07a9c3",
+            "reference": "fad3e5f03b9ae89853c8a0925231d2b3ce07a9c3",
             "shasum": ""
         },
         "require": {
@@ -1514,6 +1520,7 @@
             "nyholm/psr7": "Required to use PSR-7 bridging features (^1.2).",
             "pda/pheanstalk": "Required to use the beanstalk queue driver (^4.0).",
             "phpunit/phpunit": "Required to use assertions and run tests (^8.4|^9.0).",
+            "predis/predis": "Required to use the predis connector (^1.1.2).",
             "psr/http-message": "Required to allow Storage::put to accept a StreamInterface (^1.0).",
             "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0).",
             "symfony/cache": "Required to PSR-6 cache bridge (^5.0).",
@@ -1521,7 +1528,7 @@
             "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^2.0).",
             "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
         },
-        "time": "2020-08-11T13:43:10+00:00",
+        "time": "2020-08-27T14:22:46+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1698,30 +1705,30 @@
     },
     {
         "name": "laravel/ui",
-        "version": "v2.1.0",
-        "version_normalized": "2.1.0.0",
+        "version": "v2.2.0",
+        "version_normalized": "2.2.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/ui.git",
-            "reference": "da9350533d0da60d5dc42fb7de9c561c72129bba"
+            "reference": "fb1404f04ece6eee128e3fb750d3a1e064238b33"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/ui/zipball/da9350533d0da60d5dc42fb7de9c561c72129bba",
-            "reference": "da9350533d0da60d5dc42fb7de9c561c72129bba",
+            "url": "https://api.github.com/repos/laravel/ui/zipball/fb1404f04ece6eee128e3fb750d3a1e064238b33",
+            "reference": "fb1404f04ece6eee128e3fb750d3a1e064238b33",
             "shasum": ""
         },
         "require": {
-            "illuminate/console": "^7.0",
-            "illuminate/filesystem": "^7.0",
-            "illuminate/support": "^7.0",
+            "illuminate/console": "^7.0|^8.0",
+            "illuminate/filesystem": "^7.0|^8.0",
+            "illuminate/support": "^7.0|^8.0",
             "php": "^7.2.5"
         },
         "require-dev": {
             "mockery/mockery": "^1.0",
-            "phpunit/phpunit": "^8.0"
+            "phpunit/phpunit": "^8.0|^9.0"
         },
-        "time": "2020-06-30T20:56:33+00:00",
+        "time": "2020-08-25T18:30:43+00:00",
         "type": "library",
         "extra": {
             "laravel": {
@@ -1945,17 +1952,17 @@
     },
     {
         "name": "league/flysystem",
-        "version": "1.1.2",
-        "version_normalized": "1.1.2.0",
+        "version": "1.1.3",
+        "version_normalized": "1.1.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/flysystem.git",
-            "reference": "63cd8c14708b9544d3f61d3c15b747fda1c95c6e"
+            "reference": "9be3b16c877d477357c015cec057548cf9b2a14a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/63cd8c14708b9544d3f61d3c15b747fda1c95c6e",
-            "reference": "63cd8c14708b9544d3f61d3c15b747fda1c95c6e",
+            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/9be3b16c877d477357c015cec057548cf9b2a14a",
+            "reference": "9be3b16c877d477357c015cec057548cf9b2a14a",
             "shasum": ""
         },
         "require": {
@@ -1986,7 +1993,7 @@
             "spatie/flysystem-dropbox": "Allows you to use Dropbox storage",
             "srmklive/flysystem-dropbox-v2": "Allows you to use Dropbox storage for PHP 5 applications"
         },
-        "time": "2020-08-18T10:57:55+00:00",
+        "time": "2020-08-23T07:39:11+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2028,6 +2035,12 @@
             "s3",
             "sftp",
             "storage"
+        ],
+        "funding": [
+            {
+                "url": "https://offset.earth/frankdejonge",
+                "type": "other"
+            }
         ]
     },
     {
@@ -2071,9 +2084,6 @@
                 "email": "info@frankdejonge.nl"
             }
         ],
-<<<<<<< HEAD
-        "description": "Mime-type detection for Flysystem"
-=======
         "description": "Mime-type detection for Flysystem",
         "funding": [
             {
@@ -2170,7 +2180,6 @@
                 "type": "github"
             }
         ]
->>>>>>> 7c18f951174ad8f4612760c6cadb9284e49c7f6d
     },
     {
         "name": "mockery/mockery",
@@ -2377,17 +2386,17 @@
     },
     {
         "name": "nesbot/carbon",
-        "version": "2.38.0",
-        "version_normalized": "2.38.0.0",
+        "version": "2.39.0",
+        "version_normalized": "2.39.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "d8f6a6a91d1eb9304527b040500f61923e97674b"
+            "reference": "0a41ea7f7fedacf307b7a339800e10356a042918"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d8f6a6a91d1eb9304527b040500f61923e97674b",
-            "reference": "d8f6a6a91d1eb9304527b040500f61923e97674b",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/0a41ea7f7fedacf307b7a339800e10356a042918",
+            "reference": "0a41ea7f7fedacf307b7a339800e10356a042918",
             "shasum": ""
         },
         "require": {
@@ -2406,7 +2415,7 @@
             "phpunit/phpunit": "^7.5 || ^8.0",
             "squizlabs/php_codesniffer": "^3.4"
         },
-        "time": "2020-08-04T19:12:46+00:00",
+        "time": "2020-08-24T12:35:58+00:00",
         "bin": [
             "bin/carbon"
         ],
@@ -2454,21 +2463,31 @@
             "date",
             "datetime",
             "time"
+        ],
+        "funding": [
+            {
+                "url": "https://opencollective.com/Carbon",
+                "type": "open_collective"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/nesbot/carbon",
+                "type": "tidelift"
+            }
         ]
     },
     {
         "name": "nikic/php-parser",
-        "version": "v4.9.0",
-        "version_normalized": "4.9.0.0",
+        "version": "v4.9.1",
+        "version_normalized": "4.9.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/nikic/PHP-Parser.git",
-            "reference": "aaee038b912e567780949787d5fe1977be11a778"
+            "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/aaee038b912e567780949787d5fe1977be11a778",
-            "reference": "aaee038b912e567780949787d5fe1977be11a778",
+            "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/88e519766fc58bd46b8265561fb79b54e2e00b28",
+            "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28",
             "shasum": ""
         },
         "require": {
@@ -2479,7 +2498,7 @@
             "ircmaxell/php-yacc": "^0.0.7",
             "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
         },
-        "time": "2020-08-18T19:48:01+00:00",
+        "time": "2020-08-30T16:15:20+00:00",
         "bin": [
             "bin/php-parse"
         ],
@@ -4286,17 +4305,17 @@
     },
     {
         "name": "scrivo/highlight.php",
-        "version": "v9.18.1.1",
-        "version_normalized": "9.18.1.1",
+        "version": "v9.18.1.2",
+        "version_normalized": "9.18.1.2",
         "source": {
             "type": "git",
             "url": "https://github.com/scrivo/highlight.php.git",
-            "reference": "52fc21c99fd888e33aed4879e55a3646f8d40558"
+            "reference": "efb6e445494a9458aa59b0af5edfa4bdcc6809d9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/52fc21c99fd888e33aed4879e55a3646f8d40558",
-            "reference": "52fc21c99fd888e33aed4879e55a3646f8d40558",
+            "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/efb6e445494a9458aa59b0af5edfa4bdcc6809d9",
+            "reference": "efb6e445494a9458aa59b0af5edfa4bdcc6809d9",
             "shasum": ""
         },
         "require": {
@@ -4313,7 +4332,7 @@
         "suggest": {
             "ext-dom": "Needed to make use of the features in the utilities namespace"
         },
-        "time": "2020-03-02T05:59:21+00:00",
+        "time": "2020-08-27T03:24:44+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -4353,6 +4372,12 @@
             "highlight.js",
             "highlight.php",
             "syntax"
+        ],
+        "funding": [
+            {
+                "url": "https://github.com/allejo",
+                "type": "github"
+            }
         ]
     },
     {

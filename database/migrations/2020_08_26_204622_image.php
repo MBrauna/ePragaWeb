@@ -14,8 +14,8 @@ class Image extends Migration
 
             // Dados do que realizar
             $table->text('base64');
-            $table->double('latitude',11,8);
-            $table->double('longitude',11,8);
+            $table->double('latitude',11,8)->nullable();
+            $table->double('longitude',11,8)->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
 

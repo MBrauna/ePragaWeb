@@ -12,8 +12,8 @@ class TrackingUser extends Migration
             $table->increments('id_tracking_user');
             $table->integer('id_user');
             $table->dateTime('tracking_date');
-            $table->double('latitude',11,8);
-            $table->double('longitude',11,8);
+            $table->double('latitude',11,8)->nullable();
+            $table->double('longitude',11,8)->nullable();
             $table->timestamps();
 
             $table->index(['id_user']);

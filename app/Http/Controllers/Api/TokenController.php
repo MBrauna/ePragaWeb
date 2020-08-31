@@ -15,16 +15,6 @@
     {
         public function getToken(Request $request) {
             try {
-                // Coleta os dados da informação para salvá-los.
-                DB::beginTransaction();
-                DB::table('epraga_error')
-                ->insert([
-                    'id_user'       =>  1,
-                    'json_data'     =>  serialize($request->all()),
-                    'insert_date'   =>  Carbon::now(),
-                ]);
-                DB::commit();
-
                 $validator = Validator::make($request->all(), [
                     'cpf' => 'required|string|max:21',
                     'password' => 'required|string|min:6',
@@ -106,6 +96,15 @@
                 }
             }
             catch(Exception $error) {
+                DB::beginTransaction();
+                DB::table('epraga_error')
+                ->insert([
+                    'id_user'       =>  1,
+                    'json_data'     =>  serialize($request->all()),
+                    'insert_date'   =>  Carbon::now(),
+                ]);
+                DB::commit();
+
                 return response()->json([
                     'error' =>  [
                         'code'  =>  'ePraga0001',
@@ -115,4 +114,18 @@
             }
 
         } // public function getToken(Request $request) { ... }
+
+        public function version(Request $request) {
+            return response()->json([
+                'version'   =>  [
+                    'JarJarBinks'   =>  [
+                        'code'  =>  '1.0.0',
+                        'name'  =>  'JarJarBinks',
+                        'date'  =>  '2020-08-31 00:00:00',
+                    ],
+                ],
+                'app'   =>  'ePraga',
+                'date'  =>  Carbon::now(),
+            ],200);
+        } // public function version(Request $request) { ... }
     } // class TokenController extends Controller { ... }

@@ -19,8 +19,8 @@ class PeriodicSchuduleItem extends Migration
 
             // Dados do evento
             $table->integer('sequence')->default(999);
-            $table->double('latitude',11,8);
-            $table->double('longitude',11,8);
+            $table->double('latitude',11,8)->nullable();
+            $table->double('longitude',11,8)->nullable();
             $table->integer('quantity_images')->default(0);
             $table->boolean('status')->default(false);
             $table->timestamps();

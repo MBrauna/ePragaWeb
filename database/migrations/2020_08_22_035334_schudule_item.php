@@ -21,8 +21,8 @@ class SchuduleItem extends Migration
 
             // Dados do evento
             $table->integer('sequence')->default(999);
-            $table->double('latitude',11,8)->default(999);
-            $table->double('longitude',11,8)->default(999);
+            $table->double('latitude',11,8)->nullable();
+            $table->double('longitude',11,8)->nullable();
             $table->integer('quantity_images')->default(1);
             $table->dateTime('last_alt_at')->nullable();
             $table->dateTime('start_date')->nullable();
