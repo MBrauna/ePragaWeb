@@ -52,7 +52,7 @@ class ForeignKeyAjastes extends Migration
         Schema::table('epraga_error',function(Blueprint $table){
             $table->foreign('id_user')->references('id')->on('users');
         });
-    } 
+    }
 
     public function down()
     {
