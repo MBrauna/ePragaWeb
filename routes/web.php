@@ -39,6 +39,7 @@ Route::group(['middleware' => 'CheckUserLogin'], function(){
              Route::get('/', 'UserController@index')->name('index');
     });
 
+    /**Companias */
     Route::prefix('/company')
          ->name('company.')
          ->namespace('Companies')
@@ -49,6 +50,32 @@ Route::group(['middleware' => 'CheckUserLogin'], function(){
              Route::get('/update/{id}', 'CompaniesController@viewUpdate')->name('view-update');
              Route::post('/update', 'CompaniesController@update')->name('update');
              Route::get('/destroy/{id}', 'CompaniesController@destroy')->name('destroy');
+         });
+
+    /**Pragas */
+    Route::prefix('/prague')
+         ->name('prague.')
+         ->namespace('Prague')
+         ->group(function () {
+             Route::get('/', 'PragueController@index')->name('index');
+             Route::get('/create', 'PragueController@viewCreate')->name('create');
+             Route::post('/create', 'PragueController@create')->name('create');
+             Route::get('/update/{id}', 'PragueController@viewUpdate')->name('view-update');
+             Route::post('/update', 'PragueController@update')->name('update');
+             Route::get('/destroy/{id}', 'PragueController@destroy')->name('destroy');
+         });
+
+    /**Tratamento Pragas */
+    Route::prefix('/treatment')
+         ->name('treatment.')
+         ->namespace('Prague')
+         ->group(function () {
+             Route::get('/', 'TreatmentController@index')->name('index');
+             Route::get('/create', 'TreatmentController@viewCreate')->name('create');
+             Route::post('/create', 'TreatmentController@create')->name('create');
+             Route::get('/update/{id}', 'TreatmentController@viewUpdate')->name('view-update');
+             Route::post('/update', 'TreatmentController@update')->name('update');
+             Route::get('/destroy/{id}', 'TreatmentController@destroy')->name('destroy');
          });
 
 });

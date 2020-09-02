@@ -38,7 +38,7 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6 d-none d-lg-block image-logo-login"></div>
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
@@ -61,7 +61,7 @@
                     <button type="submit" class="btn btn-primary btn-user btn-block">Logar</button>
                     <hr>
                   </form>
-                 
+
                   <div class="text-center">
                     <a class="small" href="forgot-password.html">Esqueceu sua senha?</a>
                   </div>

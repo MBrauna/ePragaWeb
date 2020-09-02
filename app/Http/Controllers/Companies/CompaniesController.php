@@ -100,7 +100,6 @@ class CompaniesController extends Controller
                     ->with('error', 'Não foi possível localizar os dados da empresa.');
         }
 
-
         return view('companies.form',[
             'company' => $company,
             'title'   => 'Editar Dados Empresa',

@@ -91,7 +91,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tipo Cadastro</h6>
                         <a class="collapse-item" href="{{ route('company.index') }}">Empresas</a>
-                        <a class="collapse-item" href="">Pragas</a>
                         <a class="collapse-item" href="{{ route('user.index') }}">Usuário</a>
                     </div>
                 </div>
@@ -99,16 +98,15 @@
 
             <!-- Nav Item - Pages Collapse Clientes -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTeste" aria-expanded="true" aria-controls="collapseTeste" id="headingTeste">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Teste</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrague" aria-expanded="true" aria-controls="collapsePrague" id="headingPrague">
+                    <i class="fas fa-bug"></i>
+                    <span>Pragas</span>
                 </a>
-                <div id="collapseTeste" class="collapse" aria-labelledby="collapseTeste" data-parent="#accordionSidebar">
+                <div id="collapsePrague" class="collapse" aria-labelledby="collapsePrague" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tipo Cadastro</h6>
-                        <a class="collapse-item" href="">Empresas</a>
-                        <a class="collapse-item" href="">Pragas</a>
-                        <a class="collapse-item" href="{{ route('user.index') }}">Usuário</a>
+                        <h6 class="collapse-header">Serviço</h6>
+                        <a class="collapse-item" href="{{ route('prague.index') }}">Listar Pragas</a>
+                        <a class="collapse-item" href="{{ route('treatment.index') }}">Tratamento Praga</a>
                     </div>
                 </div>
             </li>

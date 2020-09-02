@@ -10909,3 +10909,9 @@ a.text-dark:focus {
   margin-top: -22px;
 }
 
+.image-logo-login {
+  background-image: url("/images/logoepraga.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
