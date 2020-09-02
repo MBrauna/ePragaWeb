@@ -10904,3 +10904,8 @@ a.text-dark:focus {
   }
 }
 
+.btn-new-form {
+  margin-bottom: -6px;
+  margin-top: -22px;
+}
+

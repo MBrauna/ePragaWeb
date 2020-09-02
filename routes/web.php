@@ -39,4 +39,16 @@ Route::group(['middleware' => 'CheckUserLogin'], function(){
              Route::get('/', 'UserController@index')->name('index');
     });
 
+    Route::prefix('/company')
+         ->name('company.')
+         ->namespace('Companies')
+         ->group(function () {
+             Route::get('/', 'CompaniesController@index')->name('index');
+             Route::get('/create', 'CompaniesController@viewCreate')->name('create');
+             Route::post('/create', 'CompaniesController@create')->name('create');
+             Route::get('/update', 'CompaniesController@viewUpdate')->name('update');
+             Route::post('/update', 'CompaniesController@update')->name('update');
+             Route::get('/destroy/{id}', 'CompaniesController@destroy')->name('destroy');
+         });
+
 });

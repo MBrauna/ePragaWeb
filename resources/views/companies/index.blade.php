@@ -1,13 +1,16 @@
-@extends('template.admin_layout')
+@extends('layouts.app')
 
 @section('corpo')
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Lista de Empresas</h6>
+      <div class="float-right btn-new-form">
+          <a href="{{ route('company.create') }}" class="btn btn-success">Nova Empresa</a>
+      </div>
     </div>
 
-    @include('template.alerts')
+    @include('layouts.alerts')
 
     <div class="card-body">
         <div class="table-responsive">

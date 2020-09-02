@@ -25,15 +25,15 @@
      <!-- Bootstrap core JavaScript-->
      <script src="{{ asset('js/jquery.min.js') }}"></script>
      <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-     
+
      <script src="{{ asset('js/app.js?v=1.1') }}"></script>
- 
+
      <!-- Core plugin JavaScript-->
      <!--<script src="{{ asset('js/jquery.easing.min.js') }}"></script>-->
- 
+
      <!-- Custom scripts for all pages-->
      <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
- 
+
      <!-- DataTables -->
      <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
      <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
@@ -47,9 +47,9 @@
      <!-- Select2 Plugin -->
      <script src="{{ asset('js/select2/select2.min.js') }}"></script>
      <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
- 
+
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-     
+
 </head>
 <body id="page-top">
     <div class="freeze-ui" data-text="Aguarde..."></div>
@@ -67,7 +67,7 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-         
+
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
@@ -75,13 +75,13 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
             </li>
-  
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
 
 
-            <!-- Nav Item - Pages Collapse Clientes -->  
+            <!-- Nav Item - Pages Collapse Clientes -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="true" aria-controls="collapseClientes" id="headingTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -90,14 +90,14 @@
                 <div id="collapseClientes" class="collapse" aria-labelledby="collapseClientes" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Tipo Cadastro</h6>
-                        <a class="collapse-item" href="">Empresas</a>
+                        <a class="collapse-item" href="{{ route('company.index') }}">Empresas</a>
                         <a class="collapse-item" href="">Pragas</a>
                         <a class="collapse-item" href="{{ route('user.index') }}">Usuário</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Pages Collapse Clientes -->  
+            <!-- Nav Item - Pages Collapse Clientes -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTeste" aria-expanded="true" aria-controls="collapseTeste" id="headingTeste">
                     <i class="fas fa-fw fa-cog"></i>
@@ -113,23 +113,23 @@
                 </div>
             </li>
 
-           
 
-  
-  
-  
+
+
+
+
         </ul>
         <!-- End of Sidebar -->
-  
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-  
+
             <!-- Main Content -->
             <div id="content">
-  
+
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-  
+
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
@@ -137,7 +137,7 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-  
+
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -157,18 +157,18 @@
                                 </form>
                             </div>
                         </li>
-    
+
                         <div class="topbar-divider d-none d-sm-block"></div>
-    
+
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->nome }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <!--<img class="img-profile rounded-circle" src=" https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                
+
                                 <a class="dropdown-item" href="">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Trocar Senha
