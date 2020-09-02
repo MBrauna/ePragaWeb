@@ -26,22 +26,22 @@ class LoginController extends Controller
         try {
 
             $request->validate([
-                'cpf_cnpj'  => 'required|integer',
+                'cpf_cnpj'  => 'required|numeric',
                 'password'  => 'required|string'
             ]);
-    
+
 
             $user = DB::table('users')
                        ->where('cpf_cnpj', '=', $request->cpf_cnpj)
                        ->where('password', '=', $request->password)
                        ->first();
-            
+
                 if(!is_null($user) && !empty($user)) {
                     Auth::loginUsingId($user->id);
 
                     return redirect()
-                                ->route('dashboard');
-                   
+                            ->route('dashboard.index');
+
 
                 } else {
                     return redirect()
@@ -51,6 +51,7 @@ class LoginController extends Controller
 
         } catch (\Exception $ex) {
             report($ex);
+
             return redirect()
             ->back()
             ->with('error', 'Ocorreu um erro ao realizar o login, tente novamente.');

@@ -16,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'LoginController@index')->name('index');
 
 Route::post('/login', 'LoginController@login')->name('login');
-Auth::routes(['register' => true]);
-
-Route::get('/dashboard', 'DashboardAdminController@index')->name('dashboard');
-
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
