@@ -8,7 +8,10 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
-    'App\\Http\\Controllers\\Api\\Schudule\\SchuduleData' => $baseDir . '/app/Http/Controllers/Api/Schudule/SchuduleData.php',
+    'App\\Http\\Controllers\\Api\\JarJarBinks\\Chat\\ChatController' => $baseDir . '/app/Http/Controllers/Api/JarJarBinks/Chat/ChatController.php',
+    'App\\Http\\Controllers\\Api\\JarJarBinks\\Location\\LocationController' => $baseDir . '/app/Http/Controllers/Api/JarJarBinks/Location/LocationController.php',
+    'App\\Http\\Controllers\\Api\\JarJarBinks\\Schudule\\SchuduleData' => $baseDir . '/app/Http/Controllers/Api/JarJarBinks/Schudule/SchuduleData.php',
+    'App\\Http\\Controllers\\Api\\JarJarBinks\\Tutorial\\TutorialController' => $baseDir . '/app/Http/Controllers/Api/JarJarBinks/Tutorial/TutorialController.php',
     'App\\Http\\Controllers\\Api\\TokenController' => $baseDir . '/app/Http/Controllers/Api/TokenController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
