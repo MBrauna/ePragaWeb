@@ -33,7 +33,7 @@
             <!-- Início Contrato -->
             <div class="form-row">
                 <label for="tituloWebsite">Início Contrato</label>
-                <input type="date" class="form-control" id="contract_start" name="contract_start" value="{{old('contract_start', isset($company->contract_start) ? $company->contract_start : '') }}" required>
+                <input type="date" class="form-control" id="contract_start" name="contract_start" value="{{old('contract_start', isset($company->contract_start) ? \Carbon\Carbon::parse($company->contract_start)->format('Y-m-d') : '') }}" required>
             </div>
 
             <br/>
@@ -41,7 +41,7 @@
             <!-- Término Contrato -->
             <div class="form-row">
                 <label for="tituloWebsite">Término Contrato</label>
-                <input type="date" class="form-control" id="contract_due" name="contract_due" value="{{old('contract_due', isset($company->contract_due) ? $company->contract_due : '') }}">
+                <input type="date" class="form-control" id="contract_due" name="contract_due" value="{{old('contract_due', isset($company->contract_due) ? \Carbon\Carbon::parse($company->due)->format('Y-m-d') : '') }}">
             </div>
 
             <br/>

@@ -33,29 +33,28 @@
                             <td>{{ $company->id_company }}</td>
                             <td>{{ $company->name }}</td>
                             <td>{{ $company->initials }}</td>
-                            <td>{{ $company->contract_start }}</td>
-                            <td>{{ $company->contract_due }}</td>
-
-                            <td><center><a href="" class="btn btn-success"><i class="fas fa-edit"></i></a></center></td>
-                            <td>22</td>
-                            <!--<td><center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalRemoveCliente-{{ $cliente->id_cliente }}"><i class="fas fa-trash"></i></button></center></td>-->
+                            <td>{{ $company->contract_start ? \Carbon\Carbon::parse($company->contract_start)->format('d/m/Y') : '' }}</td>
+                            <td>{{ $company->contract_due ? \Carbon\Carbon::parse($company->contract_due)->format('d/m/Y') : '' }}</td>
+                            <td> @if($company->status == true) Ativo @elseif($company->status == false) Inativo @else  @endif </td>
+                            <td><center><a href="{{ route('company.view-update', ['id' => $company->id_company ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a></center></td>
+                            <td><center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalRemoveCompany-{{ $company->id_company }}"><i class="fas fa-trash"></i></button></center></td>
                         </tr>
 
-                        <div class="modal fade" id="modalRemoveCliente-{{ $company->id_company }}" tabindex="-1" role="dialog" aria-labelledby="modalRemoveClienteLabel-{{$company->id_company }}" aria-hidden="true">
+                        <div class="modal fade" id="modalRemoveCompany-{{ $company->id_company }}" tabindex="-1" role="dialog" aria-labelledby="modalRemoveCompanyLabel-{{$company->id_company }}" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalRemoveClienteLabel-{{ $company->id_company }}">Aviso</h5>
+                                        <h5 class="modal-title" id="modalRemoveCompanyLabel-{{ $company->id_company }}">Aviso</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Deseja confirmar a remoção do cliente: <strong>{{ $company->name }}</strong> ?</p>
+                                        <p>Deseja confirmar a remoção da empresa: <strong>{{ $company->id_company }} - {{ $company->name }}</strong> ?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <a href="" class="btn btn-primary">Confirmar</a>
+                                        <a href="{{ route('company.destroy', ['id' => $company->id_company]) }}" class="btn btn-primary">Confirmar</a>
                                     </div>
                                 </div>
                             </div>
