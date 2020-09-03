@@ -4,9 +4,9 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Tratamentos de Pragas</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Solicitações - Atendimento</h6>
       <div class="float-right btn-new-form">
-          <a href="{{ route('treatment.create') }}" class="btn btn-success">Novo Tratamento</a>
+          <a href="{{ route('subsidiary.create') }}" class="btn btn-success">Nova Solicitação</a>
       </div>
     </div>
 
@@ -18,41 +18,47 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Empresa</th>
                         <th>Nome</th>
-                        <th>Tipo Praga</th>
                         <th>Descrição</th>
+                        <th>Endereço</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
                         <th>Situação</th>
                         <th>Editar</th>
                         <th>Remover</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($treatments as $treatment)
+                    @foreach ($subsidiarys as $subsidiary)
                         <tr>
-                            <td>{{ $treatment->id_treatment }}</td>
-                            <td>{{ $treatment->name }}</td>
-                            <td>{{ $treatment->type_prague }}</td>
-                            <td>{{ $treatment->description }}</td>
-                            <td> @if($treatment->status == true) Ativo @elseif($treatment->status == false) Inativo @else  @endif </td>
-                            <td><center><a href="{{ route('treatment.view-update', ['id' => $treatment->id_treatment ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a></center></td>
-                            <td><center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalRemoveTreatment-{{ $treatment->id_treatment }}"><i class="fas fa-trash"></i></button></center></td>
+                            <td>{{ $subsidiary->id_subsidiary }}</td>
+                            <td>{{ $subsidiary->company_name }}</td>
+                            <td>{{ $subsidiary->name }}</td>
+                            <td>{{ $subsidiary->description }}</td>
+                            <td>{{ $subsidiary->address }}</td>
+                            <td>{{ $subsidiary->latitude }}</td>
+                            <td>{{ $subsidiary->longitude }}</td>
+                            <td> @if($subsidiary->status == true) Ativo @elseif($subsidiary->status == false) Inativo @else  @endif </td>
+                            <td><center><a href="{{ route('subsidiary.view-update', ['id' => $subsidiary->id_subsidiary ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a></center></td>
+                            <td><center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalRemoveSubsidiary-{{ $subsidiary->id_subsidiary }}"><i class="fas fa-trash"></i></button></center></td>
                         </tr>
 
-                        <div class="modal fade" id="modalRemoveTreatment-{{ $treatment->id_treatment }}" tabindex="-1" role="dialog" aria-labelledby="modalRemoveTreatmentLabel-{{ $treatment->id_treatment }}" aria-hidden="true">
+                        <div class="modal fade" id="modalRemoveSubsidiary-{{ $subsidiary->id_subsidiary }}" tabindex="-1" role="dialog" aria-labelledby="modalRemoveSubsidiaryLabel-{{ $subsidiary->id_subsidiary }}" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalRemoveTreatmentLabel-{{ $treatment->id_prague }}">Aviso</h5>
+                                        <h5 class="modal-title" id="modalRemoveSubsidiaryLabel-{{ $subsidiary->id_subsidiary }}">Aviso</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Deseja confirmar a remoção do tratamento de praga: <strong>{{ $treatment->id_treatment }} - {{ $treatment->name }}</strong> ?</p>
+                                        <p>Deseja confirmar a remoção da subsidiária: <strong>{{ $subsidiary->id_subsidiary }} - {{ $subsidiary->name }}</strong> ?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <a href="{{ route('treatment.destroy', ['id' => $treatment->id_treatment]) }}" class="btn btn-primary">Confirmar</a>
+                                        <a href="{{ route('subsidiary.destroy', ['id' => $subsidiary->id_subsidiary]) }}" class="btn btn-primary">Confirmar</a>
                                     </div>
                                 </div>
                             </div>

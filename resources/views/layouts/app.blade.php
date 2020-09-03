@@ -111,6 +111,20 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Pages Collapse Clientes -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSubsidiary" aria-expanded="true" aria-controls="collapseSubsidiary" id="headingSubsidiary">
+                    <i class="far fa-calendar-check"></i>
+                    <span>Subsidiárias</span>
+                </a>
+                <div id="collapseSubsidiary" class="collapse" aria-labelledby="collapseSubsidiary" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Solicitações</h6>
+                        <a class="collapse-item" href="{{ route('subsidiary.index') }}">Listar Solicitações</a>
+                    </div>
+                </div>
+            </li>
+
 
 
 

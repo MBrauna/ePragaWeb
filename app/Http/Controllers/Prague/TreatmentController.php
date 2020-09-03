@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Prague;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Prague\Treatment;
+use App\Models\Prague\Prague;
 
 class TreatmentController extends Controller
 {
@@ -33,7 +34,11 @@ class TreatmentController extends Controller
      */
     public function viewCreate()
     {
-
+        return view('treatment-prague.form',[
+            'title'   => 'Tratamento de Praga',
+            'action'  => Route('treatment.create'),
+            'pragues' => $this->listPrague()
+        ]);
     }
 
     /**
@@ -42,8 +47,31 @@ class TreatmentController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-
+            'id_prague'   => 'nullable|integer',
+            'name'        => 'required|string|max:100',
+            'description' => 'nullable|string|max:200',
+            'status'      => 'required|string'
         ]);
+
+        try {
+            Treatment::create([
+                'id_prague'   => $request->id_prague,
+                'name'        => $request->name,
+                'description' => $request->description,
+                'status'      => $request->status
+            ]);
+
+            return redirect()
+                ->route('treatment.index')
+                ->with('success', 'Tratamento criado com sucesso.');
+
+
+        } catch (\Exception $ex) {
+            report($ex);
+            return redirect()
+                    ->back()
+                    ->with('error', 'Ocorreu um erro ao criar um novo tipo de tratamento de praga.');
+        }
     }
 
     /**
@@ -51,7 +79,26 @@ class TreatmentController extends Controller
      */
     public function viewUpdate($id)
     {
+        $treatment = Treatment::select('id_treatment',
+                                       'name',
+                                       'description',
+                                       'id_prague',
+                                       'status')
+                              ->where('id_treatment', '=', $id)
+                              ->first();
 
+        if(is_null($treatment) || empty($treatment)) {
+            return redirect()
+                    ->back()
+                    ->with('error', 'Não foi possível localizar o tratamento de praga requerido.');
+        }
+
+        return view('treatment-prague.form',[
+            'title'     => 'Tratamento de Praga',
+            'action'    => Route('treatment.update'),
+            'pragues'   => $this->listPrague(),
+            'treatment' => $treatment
+        ]);
     }
 
     /**
@@ -59,7 +106,25 @@ class TreatmentController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'id_treatment' => 'required|integer',
+            'id_prague'    => 'nullable|integer',
+            'name'         => 'required|string|max:100',
+            'description'  => 'nullable|string|max:200',
+            'status'       => 'required|string'
+        ]);
 
+        Treatment::where('id_treatment', '=', $request->id_treatment)
+                 ->update([
+                    'id_prague'   => $request->id_prague,
+                    'name'        => $request->name,
+                    'description' => $request->description,
+                    'status'      => $request->status
+                 ]);
+
+        return redirect()
+            ->route('treatment.index')
+            ->with('success', 'Tratamento de Praga atualizado com sucesso.');
     }
 
     /**
@@ -69,7 +134,14 @@ class TreatmentController extends Controller
     {
         if(!is_null($id) || !empty($id)) {
             try {
-                //code...
+                Treatment::where('id_treatment', '=', $id)
+                         ->delete();
+
+                return redirect()
+                    ->route('treatment.index')
+                    ->with('success', 'Tratamento de Praga removido com sucesso.');
+
+
             } catch (\Exception $ex) {
                 report($ex);
                 return redirect()
@@ -81,6 +153,15 @@ class TreatmentController extends Controller
                     ->back()
                     ->with('error', 'Não foi possível localizar os dados do tratamento de praga a ser removido.');
         }
+    }
+
+
+    /**
+     * Função responsável por carregar os tipos de pragas para o form de criação/edição.
+     */
+    private function listPrague()
+    {
+        return Prague::select('id_prague', 'name')->get();
     }
 
 }

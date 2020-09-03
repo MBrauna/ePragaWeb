@@ -78,4 +78,17 @@ Route::group(['middleware' => 'CheckUserLogin'], function(){
              Route::get('/destroy/{id}', 'TreatmentController@destroy')->name('destroy');
          });
 
+    /**Subsidiárias */
+    Route::prefix('/subsidiary')
+         ->name('subsidiary.')
+         ->namespace('Subsidiary')
+         ->group(function () {
+             Route::get('/', 'SubsidiaryController@index')->name('index');
+             Route::get('/create', 'SubsidiaryController@viewCreate')->name('create');
+             Route::post('/create', 'SubsidiaryController@create')->name('create');
+             Route::get('/update/{id}', 'SubsidiaryController@viewUpdate')->name('view-update');
+             Route::post('/update', 'SubsidiaryController@update')->name('update');
+             Route::get('/destroy/{id}', 'SubsidiaryController@destroy')->name('destroy');
+         });
+
 });

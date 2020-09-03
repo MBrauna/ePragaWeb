@@ -17,8 +17,9 @@
             <div class="form-row">
                 <label for="tituloWebsite">Tipo Praga</label>
                 <select class="custom-select form-control" id="id_prague" name="id_prague">
+                    <option value="" @if(old('id_prague', (isset($treatment->id_treatment) ? $treatment->id_prague : '')) == '') selected="selected" @endif>Selecione uma praga...</option>
                     @foreach ($pragues as $prague)
-                        <option value="{{ $prague['id_prague'] }}" @if(old('id_prague', (isset($prague->id_prague) ? $conta->id_prague : '')) == $prague['id_prague']) selected="selected" @endif > {{ $prague['id_prague'] }}</option>
+                        <option value="{{ $prague->id_prague }}" @if(old('id_prague', (isset($treatment->id_prague) ? $treatment->id_prague : '')) == $prague->id_prague) selected="selected" @endif > {{ $prague->name}}</option>
                     @endforeach
                 </select>
             </div>
