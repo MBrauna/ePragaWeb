@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'cpf_cnpj', 'mobile_access', 'website_access', 'mobile_token', 'last_login', 'email', 'api_token'
+        'name', 'cpf_cnpj', 'mobile_access', 'website_access', 'mobile_token', 'last_login', 'email', 'api_token','password'
     ];
 
     /**
@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'remember_token','password'
     ];
 
     /**

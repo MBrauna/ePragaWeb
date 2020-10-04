@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -31,12 +32,14 @@ class LoginController extends Controller
             ]);
 
 
+
             $user = DB::table('users')
                        ->where('cpf_cnpj', '=', $request->cpf_cnpj)
-                       ->where('password', '=', $request->password)
+                       //->where('password', '=', $request->password)
                        ->first();
 
-                if(!is_null($user) && !empty($user)) {
+
+                if(\password_verify($request->password, $user->password) == true) {
                     Auth::loginUsingId($user->id);
 
                     return redirect()

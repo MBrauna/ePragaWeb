@@ -37,6 +37,11 @@ Route::group(['middleware' => 'CheckUserLogin'], function(){
          ->namespace('User')
          ->group(function () {
              Route::get('/', 'UserController@index')->name('index');
+             Route::get('/create', 'UserController@viewCreate')->name('create');
+             Route::post('/create', 'UserController@create')->name('create');
+             Route::get('/view-update/{id}', 'UserController@viewUpdate')->name('view-update');
+             Route::post('/update', 'UserController@update')->name('update');
+             Route::get('/destroy/{id}', 'UserController@destroy')->name('destroy');
     });
 
     /**Companias */
@@ -89,6 +94,32 @@ Route::group(['middleware' => 'CheckUserLogin'], function(){
              Route::get('/update/{id}', 'SubsidiaryController@viewUpdate')->name('view-update');
              Route::post('/update', 'SubsidiaryController@update')->name('update');
              Route::get('/destroy/{id}', 'SubsidiaryController@destroy')->name('destroy');
+         });
+
+    /**Produtos */
+    Route::prefix('/product')
+         ->name('product.')
+         ->namespace('Product')
+         ->group(function () {
+             Route::get('/', 'ProductController@index')->name('index');
+             Route::get('/create', 'ProductController@viewCreate')->name('create');
+             Route::post('/create', 'ProductController@create')->name('create');
+             Route::get('/update/{id}', 'ProductController@viewUpdate')->name('view-update');
+             Route::post('/update', 'ProductController@update')->name('update');
+             Route::get('/destroy/{id}', 'ProductController@destroy')->name('destroy');
+         });
+
+    /**Categorias Produto */
+    Route::prefix('/category_product')
+         ->name('category_product.')
+         ->namespace('Product')
+         ->group(function () {
+             Route::get('/', 'CategoryProductController@index')->name('index');
+             Route::get('/create', 'CategoryProductController@viewCreate')->name('create');
+             Route::post('/create', 'CategoryProductController@create')->name('create');
+             Route::get('/update/{id}', 'CategoryProductController@viewUpdate')->name('view-update');
+             Route::post('/update', 'CategoryProductController@update')->name('update');
+             Route::get('/destroy/{id}', 'CategoryProductController@destroy')->name('destroy');
          });
 
 });

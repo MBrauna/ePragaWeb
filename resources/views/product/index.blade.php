@@ -2,69 +2,74 @@
 
 @section('corpo')
 
+@include('layouts.alerts')
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Lista de Clientes</h6>
-      <div class="float-right btn-new-form">
-          <a href="{{ route('company.create') }}" class="btn btn-success">Novo Cliente</a>
-      </div>
+      <h6 class="m-0 font-weight-bold text-primary">Produtos</h6>
+      <a href="{{ route('product.create') }}" class="btn btn-success" style="float: right; margin-top: -15px;">Novo Produto</a>
+      <a href="{{ route('category_product.create') }}" class="btn btn-info" style="float: right; margin-top: -15px;margin-right:5px;">Nova Categoria</a>
     </div>
-
-    @include('layouts.alerts')
-
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="tableClientes" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="tableProducts" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Empresa</th>
-                        <th>CNPJ_CPF</th>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Quantidade</th>
+                        <th>Porção</th>
                         <th>Situação</th>
                         <th>Editar</th>
                         <th>Remover</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($companies as $company)
+                    @foreach ($products as $product)
                         <tr>
-                            <td>{{ $company->id_company }}</td>
-                            <td>{{ $company->name }}</td>
-                            <td>{{ $company->cnpj_cpf }}</td>
-                            <td> @if($company->status == true) Ativo @elseif($company->status == false) Inativo @else  @endif </td>
-                            <td><center><a href="{{ route('company.view-update', ['id' => $company->id_company ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a></center></td>
-                            <td><center><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalRemoveCompany-{{ $company->id_company }}"><i class="fas fa-trash"></i></button></center></td>
+                            <td>{{ $product->id_product }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>{{ $product->category }}</td>
+                            <td>{{ $product->quantity }}</td>
+                            <td>{{ $product->measure }}</td>
+                            <td>{{ $product->status }}</td>
+                            <td><center><a href="{{ route('user.view-update', ['id' => $product->id_product ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a></center></td>
+                            <td><center><a class="btn btn-danger" data-toggle="modal" data-target="#modalRemoveProduct-{{ $product->id_product }}" ><i class="fas fa-trash" style="color: white;"></i></a></center></td>
                         </tr>
-
-                        <div class="modal fade" id="modalRemoveCompany-{{ $company->id_company }}" tabindex="-1" role="dialog" aria-labelledby="modalRemoveCompanyLabel-{{$company->id_company }}" aria-hidden="true">
+                        
+                        <!-- Modal Remove User -->
+                        <div class="modal fade" id="modalRemoveProduct-{{ $product->id_product }}" tabindex="-1" role="dialog" aria-labelledby="modalRemoveProductLabel-{{ $product->id_product }}" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalRemoveCompanyLabel-{{ $company->id_company }}">Aviso</h5>
+                                        <h5 class="modal-title" id="modalRemoveTreatmentLabel-{{ $product->id_product }}">Aviso</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Deseja confirmar a remoção da empresa: <strong>{{ $company->id_company }} - {{ $company->name }}</strong> ?</p>
+                                        <p>Deseja confirmar a remoção do produto: <strong>{{ $product->id_product }} - {{ $product->description }}</strong> ?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <a href="{{ route('company.destroy', ['id' => $company->id_company]) }}" class="btn btn-primary">Confirmar</a>
+                                        <a href="{{ route('user.destroy', ['id' => $product->id_product]) }}" class="btn btn-primary">Confirmar</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                     @endforeach
+                    
                 </tbody>
             </table>
-        </div> <!-- fim table-responsible -->
-    </div> <!-- fim card-body -->
-</div> <!-- fim card shadow -->
+        </div>
+    </div>
+</div>
+
 
 <script>
     $(document).ready( function () {
-        $('#tableClientes').DataTable({
+        $('#tableProducts').DataTable({
             "language": {
                 "sEmptyTable": "Nenhum registro encontrado",
                 "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -87,17 +92,16 @@
                     "sSortAscending": ": Ordenar colunas de forma ascendente",
                     "sSortDescending": ": Ordenar colunas de forma descendente"
                 },
-
+                
             },
         });
     });
 </script>
 
-
 <script>
     $(document).ready(function() {
-        $('td#telefone_contato').mask('(00) 00000-0000');
+        $('td#cpf_cnpj').mask('000.000.000-00');
     });
 </script>
-
+    
 @endsection

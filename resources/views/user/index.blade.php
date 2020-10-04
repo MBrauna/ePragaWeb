@@ -6,7 +6,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Relação de Usuários</h6>
-      <a href="http://" class="btn btn-success" style="float: right; margin-top: -15px;">Novo Usuário</a>
+      <a href="{{ route('user.create') }}" class="btn btn-success" style="float: right; margin-top: -15px;">Novo Usuário</a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -15,25 +15,45 @@
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
-                        <th>Cpf</th>
+                        <th>Cpf_Cnpj</th>
                         <th>Email</th>
                         <th>Editar</th>
                         <th>Remover</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($users as $itemUser)
+                    @foreach ($users as $itemUser)
                         <tr>
                             <td>{{ $itemUser->id }}</td>
                             <td>{{ $itemUser->name }}</td>
                             <td id="cpf_cnpj">{{ $itemUser->cpf_cnpj }}</td>
                             <td>{{ $itemUser->email }}</td>
-                            <td><center><a href="http://" class="btn btn-success"><i class="fas fa-edit"></i></a></center></td>
-                            <td><center><a href="http://" class="btn btn-danger"><i class="fas fa-trash"></i></a></center></td>
+                            <td><center><a href="{{ route('user.view-update', ['id' => $itemUser->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a></center></td>
+                            <td><center><a class="btn btn-danger" data-toggle="modal" data-target="#modalRemoveUser-{{ $itemUser->id }}" ><i class="fas fa-trash" style="color: white;"></i></a></center></td>
                         </tr>
-                    @empty
                         
-                    @endforelse
+                        <!-- Modal Remove User -->
+                        <div class="modal fade" id="modalRemoveUser-{{ $itemUser->id }}" tabindex="-1" role="dialog" aria-labelledby="modalRemoveUserLabel-{{ $itemUser->id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalRemoveTreatmentLabel-{{ $itemUser->id }}">Aviso</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Deseja confirmar a remoção do usuário: <strong>{{ $itemUser->id }} - {{ $itemUser->name }}</strong> ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <a href="{{ route('user.destroy', ['id' => $itemUser->id]) }}" class="btn btn-primary">Confirmar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    @endforeach
                     
                 </tbody>
             </table>
