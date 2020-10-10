@@ -18,9 +18,12 @@ class CompaniesController extends Controller
                                      'id_responsible',
                                      'name',
                                      'initials',
-                                     'contract_start',
-                                     'contract_due',
+                                     'fantasy_name',
+                                     'type_person',
                                      'status',
+                                     'state_registration',
+                                     'municipal_registration',
+                                     'cnpj_cpf',
                                      'created_at',
                                      'updated_at')
                            ->orderBy('name', 'asc')
@@ -37,7 +40,7 @@ class CompaniesController extends Controller
     public function viewCreate()
     {
         return view('companies.form',[
-            'title'  => 'Cadastro de Empresa',
+            'title'  => 'Cadastro de Cliente',
             'action' => Route('company.create')
         ]);
     }

@@ -13,8 +13,10 @@ class Company extends Model
     public $fillable = ['id_responsible',
                         'name',
                         'initials',
-                        'contract_start',
-                        'contract_due',
+                        'state_registration',
+                        'munipal_registration',
+                        'fantasy_name',
+                        'type_person',
                         'status',
                         'created_at',
                         'updated_at'];

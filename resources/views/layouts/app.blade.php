@@ -80,20 +80,18 @@
             <hr class="sidebar-divider">
 
 
-
-            <!-- Nav Item - Pages Collapse Clientes -->
+            <!-- Clientes -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="true" aria-controls="collapseClientes" id="headingTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Cadastro</span>
-                </a>
-                <div id="collapseClientes" class="collapse" aria-labelledby="collapseClientes" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tipo Cadastro</h6>
-                        <a class="collapse-item" href="{{ route('company.index') }}">Empresas</a>
-                        <a class="collapse-item" href="{{ route('user.index') }}">Usuário</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="{{ route('company.index') }}">
+                    <i class="fas fa-user-friends"></i>
+                <span>Clientes</span></a>
+            </li>
+
+            <!-- Contrato -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('company.index') }}">
+                    <i class="fa fa-bookmark"></i>
+                <span>Contrato</span></a>
             </li>
 
             <!-- Nav Item - Pages Collapse Clientes -->
@@ -125,7 +123,19 @@
                 </div>
             </li>
 
+            <!-- Produtos -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('product.index') }}">
+                    <i class="fas fa-user"></i>
+                <span>Produtos</span></a>
+            </li>
 
+            <!-- Usuários -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <i class="fas fa-user"></i>
+                <span>Usuários</span></a>
+            </li>
 
 
 
