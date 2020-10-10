@@ -12,35 +12,113 @@
     class SchuduleData extends Controller {
         public function getData(Request $request) {
             try {
-                $schuduleList   =   DB::table('schudule')
-                                    ->where(function($query){
-                                        $query->orWhere('id_responsible',Auth::user()->id);
-                                        $query->orWhereNull('id_responsible');
-                                    })
-                                    ->where('start_date','<=', Carbon::now())
-                                    ->where('status',true)
-                                    ->orderBy('start_date','asc')
-                                    ->get();
+                // Inicializa as arrays que serão utilizadas a frente.
+                $listSchudule       =   [];
+                $listSubsidiary     =   [];
 
-                foreach ($schuduleList as $key => $dataSchudule) {
-                    $subsidiary     =   DB::table('subsidiary')
-                                        ->where('id_subsidiary',$dataSchudule->id_subsidiary)
-                                        ->first()
-                                        ;
-
-                    $schuduleList[$key]->subsidiary =   $subsidiary;
-
-                    $itemSchudule   =   DB::table('schudule_item')
-                                        ->where('id_schudule',$dataSchudule->id_schudule)
-                                        ->orderBy('sequence','asc')
+                $listProduct        =   DB::table('product')
+                                        ->where('status',true)
                                         ->orderBy('description','asc')
                                         ->get();
 
-                    $schuduleList[$key]->item       =   $itemSchudule;
+                $tmpSchudule        =   DB::table('schudule')
+                                        ->join('schudule_responsible','schudule_responsible.id_schudule','schudule.id_schudule')
+                                        ->where('schudule_responsible.id_user',Auth::user()->id)
+                                        ->where('schudule.start_date','<=',Carbon::now()->addDays(3))
+                                        ->whereNull('schudule.end_date')
+                                        ->where('schudule.status',true)
+                                        ->orderBy('schudule.start_date','asc')
+                                        ->select('schudule.*')
+                                        ->distinct()
+                                        ->get();
 
-                } // foreach ($schuduleList as $key => $dataSchudule) { ... }
+                foreach ($tmpSchudule as $keySchudule => $valueSchudule) {
 
-                return response()->json($schuduleList,200);
+                    // -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- //
+                    $tmpItemSchudule        =   DB::table('schudule_item')
+                                                ->where('id_schudule',$valueSchudule->id_schudule)
+                                                ->orderBy('sequence','asc')
+                                                ->get();
+                    $itemSchudule           =   [];
+                    foreach ($tmpItemSchudule as $keyItemSchudule => $valueItemSchudule) {
+                        $tmpImages      =   DB::table('images')
+                                            ->where('id_schudule_item',$valueItemSchudule->id_schudule_item)
+                                            ->orderBy('created_at','asc')
+                                            ->get();
+
+                        $tmpItemData    =   (object)[
+                            'idSchuduleItem'    =>  $valueItemSchudule->id_schudule_item,
+                            'idSchudule'        =>  $valueItemSchudule->id_schudule,
+                            'spot'              =>  $valueItemSchudule->spot,
+                            'description'       =>  $valueItemSchudule->description,
+                            'sequence'          =>  $valueItemSchudule->sequence ?? 99,
+                            'qtdeImages'        =>  $valueItemSchudule->quantity_images ?? 1,
+                            'startDate'         =>  Carbon::parse($valueItemSchudule->start_date)->valueOf(),
+                            'endDate'           =>  Carbon::parse($valueItemSchudule->end_date)->valueOf(),
+                            'lastAlt'           =>  Carbon::parse($valueItemSchudule->last_alt_at)->valueOf(),
+                            'accept'            =>  $valueItemSchudule->accept,
+                            'images'            =>  $tmpImages,
+                        ];
+
+                        if(!in_array($tmpItemData,$itemSchudule)) {
+                            array_push($itemSchudule,$tmpItemData);
+                        } // if(!in_array($tmpItemData,$itemSchudule)) { ... }
+                    } // foreach ($tmpItemSchudule as $keyItemSchudule => $valueItemSchudule) { ... }
+                    // -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- //
+
+                    $tmpData    =   [
+                        'idSchudule'    =>  $valueSchudule->id_schudule,
+                        'idSubsidiary'  =>  $valueSchudule->id_subsidiary,
+                        'description'   =>  $valueSchudule->description,
+                        'status'        =>  $valueSchudule->status,
+                        'lastAlt'       =>  Carbon::parse($valueSchudule->last_alt_at)->valueOf(),
+                        'itemSchudule'  =>  $itemSchudule,
+                    ];
+
+                    array_push($listSchudule,$tmpData);
+
+                    // -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- //
+                    $subsidiary             =   DB::table('subsidiary')
+                                                ->where('id_subsidiary',$valueSchudule->id_subsidiary)
+                                                ->first();
+                    $company                =   DB::table('company')
+                                                ->where('id_company',$subsidiary->id_company)
+                                                ->first();
+                    // -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- //
+
+                    $tmpDataSubsidiary  =   (object)[
+                        'idSubsidiary'  =>  $subsidiary->id_subsidiary,
+                        'idCompany'     =>  $subsidiary->id_company,
+                        /*'company'       =>  [
+                            'idCompany' =>  $company->id_company,
+                            'name'      =>  $company->name,
+                            'fantasy'   =>  $company->fantasy_name,
+                        ],*/
+                        'company'       =>  $company->name,
+                        'name'          =>  $subsidiary->name,
+                        'description'   =>  $subsidiary->name,
+                        'address'       =>  $subsidiary->address,
+                        'location'      =>  (object)[
+                            'latitude'  =>  $subsidiary->latitude,
+                            'longitude' =>  $subsidiary->longitude
+                        ],
+                        'croqui'        =>  $subsidiary->croqui_base64,
+                    ];
+
+                    if(!in_array($tmpDataSubsidiary, $listSubsidiary)) {
+                        array_push($listSubsidiary, $tmpDataSubsidiary);
+                    } // if(!in_array($tmpDataSubsidiary, $listSubsidiary)) { ... }
+
+                    // -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- # -- //
+                } // foreach ($tmpSchudule as $keySchudule => $valueSchudule) { ... }
+
+
+                return response()->json([
+                    'date'      =>  Carbon::now(),
+                    'schudule'  =>  $listSchudule,
+                    'subsidiary'=>  $listSubsidiary,
+                    'products'  =>  $listProduct,
+                ],200);
             }
             catch(Exception $error) {
                 // Coleta os dados da informação para salvá-los.
@@ -64,11 +142,19 @@
 
         public function setData(Request $request) {
             try {
+                DB::beginTransaction();
+                DB::table('epraga_error')
+                ->insert([
+                    'id_user'       =>  Auth::user()->id,
+                    'json_data'     =>  $request->getContent(),
+                    'insert_date'   =>  Carbon::now(),
+                ]);
+                DB::commit();
+
                 $validator = Validator::make($request->all(), [
                     'id_schudule'       => 'required',
                     'id_schudule_item'  => 'required',
-                    'start_date'        => 'required',
-                    'accept'            =>  'required'
+                    'note'              => 'required',
                 ]);
 
                 if($validator->fails()) {
@@ -88,10 +174,10 @@
                 ->update([
                     'latitude'      =>  $request->latitude,
                     'longitude'     =>  $request->longitude,
-                    'start_date'    =>  $request->start_date,
-                    'end_date'      =>  $request->end_date,
+                    'start_date'    =>  Carbon::now(),
+                    'end_date'      =>  Carbon::now(),
                     'note'          =>  $request->note,
-                    'accept'        =>  $request->accept,
+                    'accept'        =>  true,
                 ]);
                 DB::commit();
 

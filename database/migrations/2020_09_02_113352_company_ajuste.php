@@ -10,6 +10,11 @@ class CompanyAjuste extends Migration
     {
         Schema::table('company',function(Blueprint $table){
             $table->integer('id_responsible')->nullable()->change();
+            $table->integer('cnpj_cpf')->nullable();
+        });
+
+        Schema::table('subsidiary', function(Blueprint $table){
+            $table->integer('cnpj_cpf')->nullable();
         });
     }
 

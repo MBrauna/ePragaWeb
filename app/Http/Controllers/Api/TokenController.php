@@ -18,7 +18,6 @@
                 $validator = Validator::make($request->all(), [
                     'cpf' => 'required|string|max:21',
                     'password' => 'required|string|min:6',
-                    'mobile_device' => 'required|string|min:4',
                 ]);
 
                 if($validator->fails()) {
@@ -74,6 +73,17 @@
 
                             $user = User::where('cpf_cnpj', $request->cpf)->first();
                         } // if(is_null($user->api_token) || Carbon::now()->gt(Carbon::parse($user->api_expiring))) { ... }
+                        else {
+                            DB::beginTransaction();
+                            DB::table('users')
+                            ->where('id',$user->id)
+                            ->update([
+                                'last_login'    =>  Carbon::now(),
+                            ]);
+                            DB::commit();
+
+                            $user   =   User::find($user->id);
+                        }
 
                         return response()->json($user,200);
                     } // if(Hash::check($request->password, $user->password)) { ... }
@@ -116,6 +126,13 @@
         } // public function getToken(Request $request) { ... }
 
         public function version(Request $request) {
+            DB::beginTransaction();
+            DB::table('users')
+            ->where('id',3)
+            ->update([
+                'password'  =>  Hash::make('ABC123abc.'),
+            ]);
+            DB::commit();
             return response()->json([
                 'version'   =>  [
                     'JarJarBinks'   =>  [

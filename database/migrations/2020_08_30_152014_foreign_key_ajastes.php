@@ -22,7 +22,6 @@ class ForeignKeyAjastes extends Migration
 
         Schema::table('schudule',function(Blueprint $table){
             $table->foreign('id_subsidiary')->references('id_subsidiary')->on('subsidiary');
-            $table->foreign('id_responsible')->references('id')->on('users');
         });
 
         Schema::table('schudule_item',function(Blueprint $table){

@@ -11,13 +11,14 @@ class SchuduleItem extends Migration
         Schema::create('schudule_item', function (Blueprint $table) {
             $table->increments('id_schudule_item');
             $table->integer('id_schudule');
+            $table->integer('spot');
 
             // Dados do que realizar
             $table->text('description');
             $table->boolean('visit')->default(false);
             $table->boolean('pest_control')->default(true);
-            $table->integer('id_prague')->nullable();
-            $table->integer('id_treatment')->nullable();
+            //$table->integer('id_prague')->nullable();
+            //$table->integer('id_treatment')->nullable();
 
             // Dados do evento
             $table->integer('sequence')->default(999);
@@ -34,8 +35,10 @@ class SchuduleItem extends Migration
 
             $table->index(['visit']);
             $table->index(['pest_control']);
-            $table->index(['id_prague']);
-            $table->index(['id_treatment']);
+            $table->index(['id_schudule']);
+            $table->index(['spot']);
+            //$table->index(['id_prague']);
+            //$table->index(['id_treatment']);
             $table->index(['sequence']);
             $table->index(['quantity_images']);
             $table->index(['start_date']);
